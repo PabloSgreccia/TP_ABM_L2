@@ -26,7 +26,7 @@
             <div class="col-sm-4 offset-md-1 py-4">
               <ul class="list-unstyled">
                 <li><a href="/" class="text-white">Home</a></li>
-                <li><a href="/users/create" class="text-white">Create</a></li>
+                <li><a href="/fruits/create" class="text-white">Create</a></li>
               </ul>
             </div>
           </div>
@@ -35,7 +35,7 @@
       <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
-            <strong><%= targetUser.nombre %></strong>
+            <strong> <%= targetFruit.type %> </strong>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,17 +45,17 @@
     </header>
 
     <main role="main">
+
       <section class="jumbotron">
         <div class="container">
           <form class="row g-3 needs-validation" method="POST" action="/api/store" novalidate>
             <div class="col-md-12 py-4">
-              <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" name="nombre" id="nombre" value="<%= targetUser.nombre %>" readonly>
-              <input type="text" class="form-control" name="id" id="id" value="<%= targetUser.id %>" hidden>
+              <label for="fruitType" class="form-label">Type</label>
+              <input type="text" class="form-control" name="fruitType" id="fruitType" value="<%= targetFruit.type %>" required>
+              <input type="text" class="form-control" name="id" id="id" value="<%= targetFruit.id %>" hidden>
             </div>
             <div class="col-12">
-              <a href="/users/edit/<%= targetUser.id %>" class="btn btn-primary">Editar</a>
-              <button class="btn btn-danger" name="boton" id="boton">Eliminar</button>
+              <button class="btn btn-primary" type="submit" id="boton">Save</button>
             </div>
           </form>
         </div>
@@ -71,22 +71,26 @@
       boton.addEventListener('click', async (e) => {
         e.preventDefault();
 
+        let fruitType = document.getElementById('fruitType').value;
         let id = document.getElementById('id').value;
 
-        const data = await destroy(id);
+        const data = await update(id, fruitType);
         console.log(data);
-        if (data.status = 200) {
-          alert(data.eliminado.nombre + ' ' + data.msg)
-          window.location.href = '/';
+        if (data.status = 201) {
+          alert(`${data.msg}: ${data.oldType} to ${data.newType}`)
+          window.location.href = '/fruits/list';
         } else {
           alert(data.error[0].msg)
         }
       })
 
-      const destroy = async (id, nombre) => {
+      const update = async (id, fruitType) => {
         try {
-          const request = await fetch('http://localhost:3000/' + id,{
-            method:"DELETE",
+          const request = await fetch('http://localhost:3000/fruits/' + id,{
+            method:"PATCH",
+            body: JSON.stringify({
+              'type': fruitType,
+            }),
             headers : {
               "Content-Type": "application/json",
             }

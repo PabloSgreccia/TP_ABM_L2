@@ -7,6 +7,8 @@ const app = express();
 
 //Requerir router
 const router = require('./routes/index.routes');
+const routerUsers = require('./routes/users.routes');
+const routerFruits = require('./routes/fruits.routes');
 // const routerApi = require('./routes/api.routes');
 
 // Static files
@@ -24,6 +26,8 @@ app.use(json());
 
 //Rutas
 app.use('/', router);
+app.use('/users', routerUsers);
+app.use('/fruits', routerFruits);
 // app.use('/api', routerApi);
 
 app.use((req, res, next) => {
