@@ -13,6 +13,7 @@ let fruits = [
     }
 ]
 
+// Fruits Views
 const fruitsList = async (req,res) => {
     return res.render('../src/views/fruits/list', {fruits});
 };
@@ -20,14 +21,12 @@ const fruitsList = async (req,res) => {
 const editFruit = async (req,res) => {
     const id = req.params.id
     const targetFruit = fruits.find(fruit => fruit.id == id)
-    console.log(targetFruit);
     return res.render('../src/views/fruits/edit', {targetFruit});
 };
 
 const showFruit = async (req,res) => {
     const id = req.params.id;
     const targetFruit = fruits.find(fruit => fruit.id == id)
-    console.log(targetFruit);
     return res.render('../src/views/fruits/show', {targetFruit});
 };
 
@@ -35,9 +34,8 @@ const createFruit = async (req,res) => {
     return res.render('../src/views/fruits/create');
 };
 
-// APIs
+// Fruits APIs
 const storeFruit = async (req,res) => {
-    console.log(req.body);
     const {type} = req.body;
     if (type) {
 
@@ -49,11 +47,11 @@ const storeFruit = async (req,res) => {
             nextId = maxId + 1
         }
 
-        fruits.unshift({'id': nextId, 'type':type.toUpperCase()});
+        fruits.unshift({'id': nextId, 'type':type});
         return res.status(200).json({
             'status': 200,
             'id': nextId, 
-            'type': type.toUpperCase(), 
+            'type': type, 
             'msg':'Fruit added correctly'
         })
     } else {
@@ -62,7 +60,6 @@ const storeFruit = async (req,res) => {
 };
 
 const updateFruit = async (req,res) => {
-    console.log(req.body);
     const {type} = req.body;
     const id = req.params.id;
     if (id) {
@@ -84,8 +81,6 @@ const destroyFruit = async (req,res) => {
     const id = req.params.id;
     const deletedFruit = fruits.find(fruit => fruit.id == id)
     fruits = fruits.filter(fruit => fruit.id != id);
-    // const deletedFruit = fruits.splice(id, 1);
-    // console.log(deletedFruit);
     return res.status(200).json({'status': 200, deletedFruit, 'msg':'Fruit removed correctly'})
 };
 

@@ -17,62 +17,51 @@
     <link href="/css/style.css" rel="stylesheet" type="text/css">
   </head>
 
-  <body>
+  <body>    
     <header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 offset-md-1 py-4">
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Home</a></li>
-                <li><a href="/fruits/create" class="text-white">Add new fruit</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <strong>Node</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users/list">Users</a></li>
+        <li><a href="/fruits/create">Add new fruit</a></li>
+      </ul>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
     </header>
 
     <main role="main">
-
-      <!-- <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">What is a Fruit?</h1>
-        </div>
-      </section> -->
-
       <div class="album py-5 bg-light">
         <div class="container">
           <h4>Fruits list</h4>
           <div class="row">
             <table class="table tablte-respondive table-hover">
+              <% if (fruits.length) { %>
               <thead>
                 <th>ID</th>
                 <th>Type</th>
                 <th>Actions</th>
               </thead>
               <tbody>
-                  <% fruits.forEach(fruit => { %>
+                <% fruits.forEach(fruit => { %>
+                <tr>
+                  <td><%= fruit.id %></td>
+                  <td><%= fruit.type %></td>
+                  <td>
+                    <a class="btn btn-primary" href="/fruits/show/<%= fruit.id %>">Show details</a>
+                  </td>
+                </tr>
+                <% }); %>
+                <% } else { %>
+                  <tbody>
                   <tr>
-                    <td><%= fruit.id %></td>
-                    <td><%= fruit.type %></td>
+                    <td>You dont have any fruit added, try adding one!</td>
                     <td>
-                      <a class="btn btn-primary" href="/fruits/show/<%= fruit.id %>">Show details</a>
+                      <a class="btn btn-primary" href="/fruits/create">Add new fruit</a>
                     </td>
                   </tr>
-                  <% }); %>
-                </tbody>
-              </table>
+                <% }%>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

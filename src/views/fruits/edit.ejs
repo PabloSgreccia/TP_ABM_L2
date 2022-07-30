@@ -20,28 +20,14 @@
 
   <body>
     <header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 offset-md-1 py-4">
-              <ul class="list-unstyled">
-                <li><a href="/" class="text-white">Home</a></li>
-                <li><a href="/fruits/create" class="text-white">Create</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <strong> <%= targetFruit.type %> </strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users/list">Users</a></li>
+        <li><a href="/fruits/list">Fruits</a></li>
+      </ul>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
     </header>
 
     <main role="main">
@@ -56,6 +42,7 @@
             </div>
             <div class="col-12">
               <button class="btn btn-primary" type="submit" id="boton">Save</button>
+              <a href="/fruits/list"><button class="btn btn-secondary" type="button">Cancel</button></a>
             </div>
           </form>
         </div>
