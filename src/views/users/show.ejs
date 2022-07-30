@@ -1,23 +1,19 @@
 <%- include('../partials/header.ejs') %>
 
-    <main role="main">
-      <section class="jumbotron">
-        <div class="container">
-          <form class="row g-3 needs-validation" method="POST" action="/api/store" novalidate>
-            <div class="col-md-12 py-4">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" name="name" id="name" value="<%= targetUser.name %>" readonly>
-              <input type="text" class="form-control" name="id" id="id" value="<%= targetUser.id %>" hidden>
-            </div>
-            <div class="col-12">
-              <a href="/users/edit/<%= targetUser.id %>" class="btn btn-primary">Edit</a>
-              <button class="btn btn-danger" name="boton" id="boton">Delete</button>
-            </div>
-          </form>
-          <a href="/users/list"><button class="btn btn-secondary" type="button">Back</button></a>
+    <div class="main">
+      <form class="row g-3 needs-validation" method="POST" action="/api/store" novalidate>
+        <div class="col-md-12 py-4">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" name="name" id="name" value="<%= targetUser.name %>" readonly>
+          <input type="text" class="form-control" name="id" id="id" value="<%= targetUser.id %>" hidden>
         </div>
-      </section>
-    </main>
+        <div class="col-12">
+          <a href="/users/edit/<%= targetUser.id %>" class="btn btn-primary">Edit</a>
+          <button class="btn btn-danger" name="boton" id="boton">Delete</button>
+        </div>
+      </form>
+      <a href="/users/list"><button class="btn btn-secondary" type="button">Back</button></a>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

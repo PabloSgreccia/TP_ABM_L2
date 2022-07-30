@@ -1,51 +1,50 @@
 <%- include('../partials/header.ejs') %>
 
-    <main role="main" class="main">
-      <div class="album py-5 bg-light">
-        <div class="container">
-          <div class="tableTitle">
-            <h4>Fruits list</h4>
-            <a href="/fruits/create">
-              <button class="btn btn-primary">
-                <span class="material-symbols-outlined">
-                  playlist_add
-                </span>
-              </button>
-            </a>
-          </div>
-          <div class="row">
-            <table class="table tablte-respondive table-hover">
-              <% if (fruits.length) { %>
-              <thead>
-                <th>ID</th>
-                <th>Type</th>
-                <th>Actions</th>
-              </thead>
-              <tbody>
-                <% fruits.forEach(fruit => { %>
-                <tr>
-                  <td><%= fruit.id %></td>
-                  <td><%= fruit.type %></td>
-                  <td>
-                    <a class="btn btn-primary" href="/fruits/show/<%= fruit.id %>">Show details</a>
-                  </td>
-                </tr>
-                <% }); %>
-                <% } else { %>
-                  <tbody>
-                  <tr>
-                    <td>You don't have any fruit, try adding one!</td>
-                    <td>
-                      <a class="btn btn-primary" href="/fruits/create">Add new fruit</a>
-                    </td>
-                  </tr>
-                <% }%>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </main>
+<div class="main-list">
+  <div class="table-title">
+    <h1>Fruits list</h1>
+    <!-- <a href="/users/create">
+      <span class="material-symbols-outlined">
+        playlist_add
+      </span>
+    </a> -->
+  </div>
+  
+  <table>
+    <thead>
+      <th>ID</th>
+      <th>Fruit</th>
+      <th>Actions</th>
+    </thead>
+    <% if (fruits.length) { %>
+      <tbody>
+        <% fruits.forEach(fruit => { %>
+          <tr>
+            <td><%= fruit.id %></td>
+            <td><%= fruit.type %></td>
+            <td class="actions">
+              <a class="list-button" href="/fruits/show/<%= fruit.id %>">Show details</a>
+            </td>
+          </tr>
+          <% }); %>
+    <% } else { %>
+      <tbody>
+        <tr class="no-data">
+          <td colspan="2">You don't have any fruit, try adding one!</td>
+          <td>
+            <a class="list-button" href="/fruits/create">Add new fruit</a>
+          </td>
+        </tr>
+    <% }%>
+      </tbody>
+  </table>
+</div>
+
+<a href="/fruits/create" class="floating-button">
+  <span class="material-symbols-outlined">
+  playlist_add
+  </span>
+</a>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
