@@ -1,17 +1,4 @@
-let fruits = [
-    {
-        'id': 2,
-        'type':'Apple'
-    },
-    {
-        'id': 1,
-        'type':'Banana'
-    },
-    {
-        'id': 0,
-        'type':'Strawberry'
-    }
-]
+let {fruits} = require('../public/data/fruits')
 
 // Fruits Views
 const fruitsList = async (req,res) => {
@@ -47,7 +34,7 @@ const storeFruit = async (req,res) => {
             nextId = maxId + 1
         }
 
-        fruits.unshift({'id': nextId, 'type':type});
+        fruits.push({'id': nextId, 'type':type});
         return res.status(200).json({
             'status': 200,
             'id': nextId, 

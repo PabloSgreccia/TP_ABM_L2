@@ -6,7 +6,11 @@
 
 header{
     background-color: #343a40;
+    position: fixed; 
+    overflow: hidden;
+    width: 100%;
 }
+
 
 header ul {
     list-style-type: none;
@@ -28,11 +32,13 @@ header li a {
     padding: 1.5rem;
     border-radius: 5px;
 
-    transition: all 0.5s;
+    transition: 0.5s;
 }
 
 header li a:hover {
     background-color: #111;
 }
 
-/* Capitalize first letters of elements in lists */
+main{
+    padding-top: 5rem;
+}
