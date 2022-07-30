@@ -1,37 +1,18 @@
-let usuario = [
-    {
-        'id': 2,
-        'nombre':'pepe'
-    },
-    {
-        'id': 1,
-        'nombre':'juan'
-    },
-    {
-        'id': 0,
-        'nombre':'jony'
-    }
-]
-
-// const index = async (req,res) => {
-//     return res.render('../src/views/index');
-// };
+let {users} = require('../public/data/users')
 
 const usersList = async (req,res) => {
-    return res.render('../src/views/users/list', {usuario});
+    return res.render('../src/views/users/list', {users});
 };
 
 const editUser = async (req,res) => {
     const id = req.params.id
-    const targetUser = usuario.find(element => element.id == id)
-    console.log(targetUser);
+    const targetUser = users.find(user => user.id == id)
     return res.render('../src/views/users/edit', {targetUser});
 };
 
 const showUser = async (req,res) => {
     const id = req.params.id;
-    const targetUser = usuario.find(element => element.id == id)
-    console.log(targetUser);
+    const targetUser = users.find(user => user.id == id)
     return res.render('../src/views/users/show', {targetUser});
 };
 
@@ -41,55 +22,52 @@ const createUser = async (req,res) => {
 
 // APIs
 const storeUser = async (req,res) => {
-    console.log(req.body);
-    const {nombre, id} = req.body;
-    if (nombre) {
+    const {name} = req.body;
+    if (name) {
 
         // Get max id
-        const ids = usuario.map(element => {return element.id})
-        const maxId = Math.max(...ids)
-        const nextId = maxId + 1
-        console.log(ids);
-        console.log(nextId);
+        let nextId = 0;
+        if (users.length > 0) {
+            const ids = users.map(user => {return user.id})
+            const maxId = Math.max(...ids)
+            nextId = maxId + 1
+        }
 
-        usuario.unshift({'id': nextId, 'nombre':nombre});
+        users.push({'id': nextId, 'name':name});
         return res.status(200).json({
             'status': 200,
             'id': nextId, 
-            nombre, 
-            'msg':'Usuario creado correctamente'
+            'name': name, 
+            'msg':'User added correctly'
         })
     } else {
-        return res.status(404).json({'msg':'No se recibieron los datos'})
+        return res.status(404).json({'msg':'Data not received.'})
     }
 };
 
 const updateUser = async (req,res) => {
-    const {nombre} = req.body;
+    const {name} = req.body;
     const id = req.params.id;
     if (id) {
-        let index = null;
-        for (let i = 0; i < usuario.length; i++) {
-            if (usuario[i].id == id) {
-                usuario[i].nombre = nombre;
-                index = i
+        let updatedUser = '';
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].id == id) {
+                updatedUser = users[i].name;
+                users[i].name = name;
                 break
             }
         }
-        const actualizado = usuario[index];
-        return res.status(201).json({'status': 201, actualizado, 'msg':'Usuario editado correctamente'})
+        return res.status(201).json({'status': 201, 'oldName': updatedUser, 'newName': name,  'msg':'users editado correctamente'})
     } else {
-        return res.status(404).json({'msg':'No se recibieron los datos'})
+        return res.status(404).json({'msg':'Data not received.'})
     }
 };
 
 const destroyUser = async (req,res) => {
     const id = req.params.id;
-    const eliminado = usuario.find(elemento => elemento.id == id)
-    usuario = usuario.filter(elemento => elemento.id != id);
-    // const eliminado = usuario.splice(id, 1);
-    console.log(eliminado);
-    return res.status(200).json({'status': 200, eliminado, 'msg':'Usuario eliminado correctamente'})
+    const deletedUser = users.find(user => user.id == id)
+    users = users.filter(user => user.id != id);
+    return res.status(200).json({'status': 200, deletedUser, 'msg':'User deleted correctly'})
 };
 
 module.exports = {

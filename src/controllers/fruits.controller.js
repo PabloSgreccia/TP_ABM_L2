@@ -29,7 +29,7 @@ const storeFruit = async (req,res) => {
         // Get max id
         let nextId = 0;
         if (fruits.length > 0) {
-            const ids = fruits.map(element => {return element.id})
+            const ids = fruits.map(fruit => {return fruit.id})
             const maxId = Math.max(...ids)
             nextId = maxId + 1
         }
@@ -68,7 +68,7 @@ const destroyFruit = async (req,res) => {
     const id = req.params.id;
     const deletedFruit = fruits.find(fruit => fruit.id == id)
     fruits = fruits.filter(fruit => fruit.id != id);
-    return res.status(200).json({'status': 200, deletedFruit, 'msg':'Fruit removed correctly'})
+    return res.status(200).json({'status': 200, deletedFruit, 'msg':'Fruit deleted correctly'})
 };
 
 module.exports = {

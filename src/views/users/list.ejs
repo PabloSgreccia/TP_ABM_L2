@@ -19,58 +19,47 @@
 
   <body>
     <header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 offset-md-1 py-4">
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Home</a></li>
-                <li><a href="/users/create" class="text-white">Create</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <strong>Node</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/fruits/list">Fruits</a></li>
+        <li><a href="/users/create">Add new user</a></li>
+      </ul>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
     </header>
 
     <main role="main">
-
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Modulo de NodeJS</h1>
-        </div>
-      </section>
-
       <div class="album py-5 bg-light">
         <div class="container">
-          <h4>Lista de usuarios</h4>
+          <h4>Users list</h4>
           <div class="row">
             <table class="table tablte-respondive table-hover">
-              <thead>
+              <% if (users.length) { %>
+                <thead>
                 <th>ID</th>
-                <th>Nombre</th>
-                <th>Acciones</th>
+                <th>Name</th>
+                <th>Actions</th>
               </thead>
               <tbody>
-                  <% usuario.forEach(element => { %>
+                  <% users.forEach(user => { %>
                   <tr>
-                    <td><%= element.id %></td>
-                    <td><%= element.nombre %></td>
+                    <td><%= user.id %></td>
+                    <td><%= user.name %></td>
                     <td>
-                      <a class="btn btn-primary" href="/users/show/<%= element.id %>">Ver detalles</a>
+                      <a class="btn btn-primary" href="/users/show/<%= user.id %>">Show details</a>
                     </td>
                   </tr>
                   <% }); %>
+                  <% } else { %>
+                    <tbody>
+                    <tr>
+                      <td>You don't have any user, try adding one!</td>
+                      <td>
+                        <a class="btn btn-primary" href="/users/create">Add new user</a>
+                      </td>
+                    </tr>
+                  <% }%>
                 </tbody>
               </table>
           </div>

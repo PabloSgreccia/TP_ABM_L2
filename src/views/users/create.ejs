@@ -20,41 +20,27 @@
 
   <body>
     <header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 offset-md-1 py-4">
-              <ul class="list-unstyled">
-                <li><a href="/" class="text-white">Home</a></li>
-                <li><a href="#" class="text-white">Create</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <strong>Crear usuario</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users/list">Users</a></li>
+        <li><a href="/users/list">Fruits</a></li>
+      </ul>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
     </header>
-
     <main role="main">
 
       <section class="jumbotron">
         <div class="container">
           <form class="row g-3 needs-validation" method="POST" action="/api/store" novalidate>
             <div class="col-md-12 py-4">
-              <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" name="nombre" id="nombre" value="" required>
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" name="name" id="name" value="" required>
             </div>
             <div class="col-12">
-              <button class="btn btn-primary" type="submit" id="boton">Enviar</button>
+              <a href="/users/list"><button class="btn btn-secondary" type="button">Cancel</button></a>
+              <button class="btn btn-primary" type="submit" id="boton">Save</button>
             </div>
           </form>
         </div>
@@ -70,25 +56,24 @@
       boton.addEventListener('click', async (e) => {
         e.preventDefault();
 
-        let nombre = document.getElementById('nombre').value;
+        let name = document.getElementById('name').value;
 
-        const data = await store(nombre);
+        const data = await store(name);
         console.log(data);
         if (data.status === 200) {
-          alert(data.nombre + data.msg)
-          window.location.href = '/';
+          alert(`${data.msg}: ${data.name}`)
+          window.location.href = '/users/list';
         } else {
           alert(data.error[0].msg)
         }
       })
 
-      const store = async (nombre) => {
+      const store = async (name) => {
         try {
           const request = await fetch('http://localhost:3000/users/store',{
             method:"POST",
             body: JSON.stringify({
-              "id": 4,
-              nombre
+              "name": name,
             }),
             headers : {
               "Content-Type": "application/json",

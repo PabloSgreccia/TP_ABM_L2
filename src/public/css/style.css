@@ -9,6 +9,7 @@ header{
     position: fixed; 
     overflow: hidden;
     width: 100%;
+    /* max-height: calc(3rem + 16px); */
 }
 
 
@@ -39,6 +40,6 @@ header li a:hover {
     background-color: #111;
 }
 
-main{
-    padding-top: 5rem;
+.container{
+    padding-top: calc(3.5rem + 16px);
 }
