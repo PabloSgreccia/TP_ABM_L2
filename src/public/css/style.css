@@ -30,10 +30,12 @@ a{
     border: 1px solid var(--main-border-color);
     display: flex;
     align-items: center;
+    justify-content: center;
     transition: 0.5s;
     gap: 5px;
     cursor: pointer;
     font-size: 1rem;
+    min-width: 80px;
 }
 .common-btn:hover{
     background-color: var(--main-hover-color);
@@ -237,6 +239,7 @@ td, .messageText {
     bottom: 1.5rem;
     right: 10%;
     font-weight: bold;
+    min-width: 0px;
 }
 
 .actions{
@@ -296,6 +299,7 @@ tbody .no-data{
 .new-title{
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
+    text-transform: capitalize;
 }
 
 .form-input input{

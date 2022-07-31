@@ -8,10 +8,12 @@
           <label for="name">Name</label>
           <input type="text" name="name" id="name" value="<%= targetUser.name %>" readonly>
         </div>
-        <div class="form-buttons">
-          <a href="/users/edit/<%= targetUser.id %>" class="common-btn">Edit</a>
-          <button name="boton" id="boton" class="common-btn btn-delete">Delete</button>
+        <div class="table-title">
           <a href="/users/list" class="common-btn btn-cancel">Back</a>
+          <div class="form-buttons">
+            <button name="boton" id="boton" class="common-btn btn-delete">Delete</button>
+            <a href="/users/edit/<%= targetUser.id %>" class="common-btn">Edit</a>
+          </div>
         </div>
       </form>
     </div>

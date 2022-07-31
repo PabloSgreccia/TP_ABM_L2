@@ -1,4 +1,7 @@
-Crear un listado ABM de frutas
-con un minimo de 10 elementos(10 frutas diferentes)
-en un Controlador, ruta y carpeta de vistas diferente a la de usuario
-Usuarios y Frutas deben poder funcionar independiente del otro
+# Description:
+On this website you will find two lists, one of users and the other of fruits, where in each of them you can create, delete or update their elements.
+This is also kwown as a CRUD Website.
+
+# Technologies:
+    - Frontend: HTML, CSS, Javascript and EJS
+    - Backend: NodeJs (Express)

@@ -9,10 +9,12 @@
           <label for="fruitType">Fruit</label>
           <input type="text" name="fruitType" id="fruitType" value="<%= targetFruit.type %>" readonly>
         </div>
-        <div class="form-buttons">
-          <a href="/fruits/edit/<%= targetFruit.id %>" class="common-btn">Edit</a>
-          <button name="boton" id="boton" class="common-btn btn-delete">Delete</button>
+        <div class="table-title">
           <a href="/fruits/list" class="common-btn btn-cancel">Back</a>
+          <div class="form-buttons">
+            <button name="boton" id="boton" class="common-btn btn-delete">Delete</button>
+            <a href="/fruits/edit/<%= targetFruit.id %>" class="common-btn">Edit</a>
+          </div>
         </div>
       </form>
     </div>
