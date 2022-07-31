@@ -1,13 +1,13 @@
 <%- include('../partials/header.ejs') %>
 
     <div class="main-list">
-      <h2 class="new-title"><%= targetFruit.type %> details:</h2>
+      <h2 class="new-title">Edit <%= targetFruit.type %>:</h2>
       <form method="POST" action="/api/store" novalidate>
         <div class="form-input">
           <label for="fruitType">Fruit</label>
           <input type="text" name="fruitType" id="fruitType" value="<%= targetFruit.type %>" 
           maxlength="20" pattern="^[a-zA-Z]{3,20}$" required>
-          <span id="input-alert" class="imhidden">Only letters are allowed, Between 3 and 20 characters</span>
+          <span id="input-alert" class="imhidden">Only letters are allowed, Between 3 and 20 characters.</span>
           <input name="id" id="id" value="<%= targetFruit.id %>" hidden>
         </div>
         <div class="form-buttons">

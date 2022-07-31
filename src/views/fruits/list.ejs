@@ -23,7 +23,11 @@
               <td><%= fruit.id %></td>
               <td><%= fruit.type %></td>
               <td class="actions">
-                <a class="list-button" href="/fruits/show/<%= fruit.id %>">Show details</a>
+                <a class="list-button" href="/fruits/show/<%= fruit.id %>">
+                  <span class="material-symbols-outlined button-icon">
+                    search
+                  </span>
+                </a>
               </td>
             </tr>
             <% }); %>
@@ -32,7 +36,7 @@
           <tr class="no-data">
             <td colspan="2">You don't have any fruit, try adding one!</td>
             <td>
-              <a class="list-button" href="/fruits/create">Add new fruit</a>
+              <a class="list-create" href="/fruits/create">Add new fruit</a>
             </td>
           </tr>
       <% }%>
