@@ -1,6 +1,6 @@
 <%- include('./partials/header.ejs') %>
 
-    <div class="main">
+    <div class="main container">
       <div class="web-description">
         <h1>Web Description</h1>
         <p>
@@ -15,14 +15,14 @@
         <p>Designed by Pablo Sgreccia.</p>
         <p>Check the full code on my <a href="https://github.com/PabloSgreccia/TP_ABM_L2" target="_blank">GitHub</a>.</p>
         <p>Likes: <span id="likes-counter"><%= likeCounter %></span></p>
-        <button id="like"><span class="material-symbols-outlined" id="like-span">thumb_up</span>Like</button>
+        <button class="common-btn" id="like"><span class="material-symbols-outlined" id="like-span">thumb_up</span>Like</button>
       </div>
       
       <div class="crud-try">
         <h2>Lets try it!</h2>
         <div class="crud-buttons">
-          <a href="users/list">Users CRUD</a>
-          <a href="fruits/list">Fruits CRUD</a>
+          <a href="users/list" class="common-btn">Users CRUD</a>
+          <a href="fruits/list" class="common-btn">Fruits CRUD</a>
         </div>
       </div>
     </div>

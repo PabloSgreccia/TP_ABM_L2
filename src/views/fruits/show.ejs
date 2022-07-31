@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-<div class="main-list">
+<div class="main-list container">
       <h2 class="new-title"><%= targetFruit.type %> details:</h2>
       <form method="POST" action="/api/store" novalidate>
         <div class="form-input">
@@ -10,9 +10,9 @@
           <input type="text" name="fruitType" id="fruitType" value="<%= targetFruit.type %>" readonly>
         </div>
         <div class="form-buttons">
-          <a href="/fruits/edit/<%= targetFruit.id %>" class="btn-primary">Edit</a>
-          <button name="boton" id="boton" class="btn-primary btn-delete">Delete</button>
-          <a href="/fruits/list" class="btn-primary btn-cancel">Back</a>
+          <a href="/fruits/edit/<%= targetFruit.id %>" class="common-btn">Edit</a>
+          <button name="boton" id="boton" class="common-btn btn-delete">Delete</button>
+          <a href="/fruits/list" class="common-btn btn-cancel">Back</a>
         </div>
       </form>
     </div>

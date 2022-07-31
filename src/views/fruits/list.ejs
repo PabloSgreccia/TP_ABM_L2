@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-  <div class="main-list">
+  <div class="main-list container">
     <div class="table-title">
       <h1>Fruits list</h1>
       <!-- <a href="/users/create">
@@ -23,7 +23,7 @@
               <td><%= fruit.id %></td>
               <td><%= fruit.type %></td>
               <td class="actions">
-                <a class="list-button" href="/fruits/show/<%= fruit.id %>">
+                <a class="list-button common-btn" href="/fruits/show/<%= fruit.id %>">
                   <span class="material-symbols-outlined button-icon">
                     search
                   </span>
@@ -36,7 +36,7 @@
           <tr class="no-data">
             <td colspan="2">You don't have any fruit, try adding one!</td>
             <td>
-              <a class="list-create" href="/fruits/create">Add new fruit</a>
+              <a class="list-create common-btn" href="/fruits/create">Add new fruit</a>
             </td>
           </tr>
       <% }%>
@@ -46,7 +46,7 @@
 
   <%- include('../partials/message.ejs') %>
 
-  <a href="/fruits/create" class="floating-button">
+  <a href="/fruits/create" class="floating-button common-btn">
     <span class="material-symbols-outlined">
     playlist_add
     </span>

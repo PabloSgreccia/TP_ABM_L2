@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-    <div class="main-list">
+    <div class="main-list container">
       <h2 class="new-title">Edit <%= targetUser.name %>:</h2>
       <form method="POST" action="/api/store" novalidate>
         <div class="form-input">
@@ -11,8 +11,8 @@
           <input clss="input-hidden" name="id" id="id" value="<%= targetUser.id %>" hidden>
         </div>
         <div class="form-buttons">
-          <a href="/users/list" class="btn-primary btn-cancel">Cancel</a>
-          <button type="submit" id="boton" class="btn-primary">Save</button>
+          <a href="/users/list" class="common-btn btn-cancel">Cancel</a>
+          <button type="submit" id="boton" class="common-btn">Save</button>
         </div>
       </form>
     </div>

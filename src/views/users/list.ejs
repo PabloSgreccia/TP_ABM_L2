@@ -1,13 +1,8 @@
 <%- include('../partials/header.ejs') %>
    
-    <div class="main-list">
+    <div class="main-list container">
         <div class="table-title">
           <h1>Users list</h1>
-          <!-- <a href="/users/create">
-            <span class="material-symbols-outlined">
-              playlist_add
-            </span>
-          </a> -->
         </div>
         
         <table>
@@ -23,7 +18,7 @@
                   <td><%= user.id %></td>
                   <td><%= user.name %></td>
                   <td class="actions">
-                    <a class="list-button" href="/users/show/<%= user.id %>">
+                    <a class="list-button common-btn" href="/users/show/<%= user.id %>">
                       <span class="material-symbols-outlined button-icon">
                         search
                         </span>
@@ -36,7 +31,7 @@
               <tr class="no-data">
                 <td colspan="2">You don't have any user, try adding one!</td>
                 <td>
-                  <a class="list-create" href="/users/create">Add new user</a>
+                  <a class="list-create common-btn" href="/users/create">Add new user</a>
                 </td>
               </tr>
           <% }%>
@@ -46,7 +41,7 @@
 
     <%- include('../partials/message.ejs') %>
 
-    <a href="/users/create" class="floating-button">
+    <a href="/users/create" class="floating-button common-btn">
       <span class="material-symbols-outlined">
         playlist_add
       </span>
