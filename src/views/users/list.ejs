@@ -9,7 +9,7 @@
             </span>
           </a> -->
         </div>
-          
+        
         <table>
           <thead>
             <th>ID</th>
@@ -40,6 +40,13 @@
         </table>
     </div>
 
+    <% if (message.message.length) { %>
+      <div class="floating-message" id="floating-message">
+        <p><%= message.message %></p>
+      </div>
+    <% } %>
+        
+
     <a href="/users/create" class="floating-button">
       <span class="material-symbols-outlined">
         playlist_add
@@ -47,4 +54,15 @@
     </a>
 
   </body>
+
+  <script>
+    const $message = document.getElementById('floating-message');
+
+    if ($message) {
+      let timeOut = setTimeout(() => {
+        $message.remove();
+      }, 3000);
+    }
+  </script>
+
 </html>

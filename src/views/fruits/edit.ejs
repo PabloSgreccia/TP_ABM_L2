@@ -5,7 +5,8 @@
       <form method="POST" action="/api/store" novalidate>
         <div class="form-input">
           <label for="fruitType">Fruit</label>
-          <input type="text" name="fruitType" id="fruitType" value="<%= targetFruit.type %>">
+          <input type="text" name="fruitType" id="fruitType" value="<%= targetFruit.type %>" 
+          maxlength="20" onkeydown="return /[a-z]/i.test(event.key)" required>
           <input clss="input-hidden" name="id" id="id" value="<%= targetFruit.id %>" hidden>
         </div>
         <div class="form-buttons">
@@ -26,7 +27,7 @@
 
         const data = await update(id, fruitType);
         if (data.status = 201) {
-          alert(`${data.msg}: ${data.oldType} to ${data.newType}`)
+          // alert(`${data.msg}: ${data.oldType} to ${data.newType}`)
           window.location.href = '/fruits/list';
         } else {
           alert(data.error[0].msg)

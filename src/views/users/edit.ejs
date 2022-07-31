@@ -5,7 +5,8 @@
       <form method="POST" action="/api/store" novalidate>
         <div class="form-input">
           <label for="name">Name</label>
-          <input type="text" name="name" id="name" value="<%= targetUser.name %>">
+          <input type="text" name="name" id="name" value="<%= targetUser.name %>" 
+            maxlength="20" onkeydown="return /[a-z]/i.test(event.key)" required>
           <input clss="input-hidden" name="id" id="id" value="<%= targetUser.id %>" hidden>
         </div>
         <div class="form-buttons">
@@ -29,7 +30,7 @@
         const data = await update(id, name);
         console.log(data);
         if (data.status = 201) {
-          alert(`${data.msg}: ${data.oldName} to ${data.newName}`)
+          // alert(`${data.msg}: ${data.oldName} to ${data.newName}`)
           window.location.href = '/users/list';
         } else {
           alert(data.error[0].msg)

@@ -1,8 +1,14 @@
 let {fruits} = require('../public/data/fruits')
+let {messages} = require('../public/data/messages')
 
 // Fruits Views
 const fruitsList = async (req,res) => {
-    return res.render('../src/views/fruits/list', {fruits});
+    let message = {'message': ''}
+    if (messages.length) {
+        message = messages.shift();
+        console.log(message);
+    } 
+    return res.render('../src/views/fruits/list', {fruits, message});
 };
 
 const editFruit = async (req,res) => {
@@ -34,7 +40,8 @@ const storeFruit = async (req,res) => {
             nextId = maxId + 1
         }
 
-        fruits.push({'id': nextId, 'type':type});
+        fruits.push({'id': nextId, 'type':type.toLowerCase()});
+        messages.push({'message':`Fruit ${type.toLowerCase()} added`});
         return res.status(200).json({
             'status': 200,
             'id': nextId, 
@@ -49,15 +56,16 @@ const storeFruit = async (req,res) => {
 const updateFruit = async (req,res) => {
     const {type} = req.body;
     const id = req.params.id;
-    if (id) {
+    if (id && type) {
         let updatedFruit = '';
         for (let i = 0; i < fruits.length; i++) {
             if (fruits[i].id == id) {
                 updatedFruit = fruits[i].type;
-                fruits[i].type = type;
+                fruits[i].type = type.toLowerCase();
                 break
             }
         }
+        messages.push({'message':`Fruit ${updatedFruit} changed to ${type.toLowerCase()}`});
         return res.status(201).json({'status': 201, 'oldType': updatedFruit, 'newType': type, 'msg':'Fruit updated correctly'})
     } else {
         return res.status(404).json({'msg':'Data not received.'})
@@ -68,6 +76,7 @@ const destroyFruit = async (req,res) => {
     const id = req.params.id;
     const deletedFruit = fruits.find(fruit => fruit.id == id)
     fruits = fruits.filter(fruit => fruit.id != id);
+    messages.push({'message':`Fruit ${deletedFruit.type} deleted`});
     return res.status(200).json({'status': 200, deletedFruit, 'msg':'Fruit deleted correctly'})
 };
 

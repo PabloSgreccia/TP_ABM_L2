@@ -4,7 +4,8 @@
       <h2 class="new-title">New Fruit</h2>
       <form method="POST" action="/api/store" novalidate>
         <div class="form-input">
-          <input type="text" name="fruitType" id="fruitType" placeholder="Fruit" required>
+          <input type="text" name="fruitType" id="fruitType" placeholder="Fruit" 
+          maxlength="20" onkeydown="return /[a-z]/i.test(event.key)" required>
         </div>
         <div class="form-buttons">
           <a href="/fruits/list" class="btn-primary btn-cancel">Cancel</a>
@@ -24,7 +25,7 @@
 
         const data = await store(fruitType);
         if (data.status === 200) {
-          alert(`${data.msg}: ${data.type}`)
+          // alert(`${data.msg}: ${data.type}`)
           window.location.href = '/fruits/list';
         } else {
           alert(data.error[0].msg)

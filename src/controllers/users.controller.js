@@ -1,7 +1,14 @@
 let {users} = require('../public/data/users')
+let {messages} = require('../public/data/messages')
 
+// Users Views
 const usersList = async (req,res) => {
-    return res.render('../src/views/users/list', {users});
+    let message = {'message': ''}
+    if (messages.length) {
+        message = messages.shift();
+        console.log(message);
+    } 
+    return res.render('../src/views/users/list', {users, message});
 };
 
 const editUser = async (req,res) => {
@@ -20,7 +27,7 @@ const createUser = async (req,res) => {
     return res.render('../src/views/users/create');
 };
 
-// APIs
+// Users APIs
 const storeUser = async (req,res) => {
     const {name} = req.body;
     if (name) {
@@ -33,7 +40,8 @@ const storeUser = async (req,res) => {
             nextId = maxId + 1
         }
 
-        users.push({'id': nextId, 'name':name});
+        users.push({'id': nextId, 'name':name.toLowerCase()});
+        messages.push({'message':`User ${name.toLowerCase()} created`});
         return res.status(200).json({
             'status': 200,
             'id': nextId, 
@@ -48,16 +56,18 @@ const storeUser = async (req,res) => {
 const updateUser = async (req,res) => {
     const {name} = req.body;
     const id = req.params.id;
-    if (id) {
+    if (id && name) {
+        console.log(name);
         let updatedUser = '';
         for (let i = 0; i < users.length; i++) {
             if (users[i].id == id) {
                 updatedUser = users[i].name;
-                users[i].name = name;
+                users[i].name = name.toLowerCase();
                 break
             }
         }
-        return res.status(201).json({'status': 201, 'oldName': updatedUser, 'newName': name,  'msg':'users editado correctamente'})
+        messages.push({'message':`User ${updatedUser} changed to ${name.toLowerCase()}`});
+        return res.status(201).json({'status': 201, 'oldName': updatedUser, 'newName': name,  'msg':'User edited correctly'})
     } else {
         return res.status(404).json({'msg':'Data not received.'})
     }
@@ -67,6 +77,7 @@ const destroyUser = async (req,res) => {
     const id = req.params.id;
     const deletedUser = users.find(user => user.id == id)
     users = users.filter(user => user.id != id);
+    messages.push({'message':`User ${deletedUser.name} deleted`});
     return res.status(200).json({'status': 200, deletedUser, 'msg':'User deleted correctly'})
 };
 

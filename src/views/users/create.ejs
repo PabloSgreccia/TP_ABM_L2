@@ -4,7 +4,8 @@
       <h2 class="new-title">New User</h2>
       <form method="POST" action="/api/store" novalidate>
         <div class="form-input">
-          <input type="text" name="name" id="name" placeholder="Name" required>
+          <input type="text" name="name" id="name" placeholder="Name" 
+            maxlength="20" onkeydown="return /[a-z]/i.test(event.key)" required>
         </div>
         <div class="form-buttons">
           <a href="/users/list" class="btn-primary btn-cancel">Cancel</a>
@@ -23,9 +24,8 @@
         let name = document.getElementById('name').value;
 
         const data = await store(name);
-        console.log(data);
         if (data.status === 200) {
-          alert(`${data.msg}: ${data.name}`)
+          // alert(`${data.msg}: ${data.name}`)
           window.location.href = '/users/list';
         } else {
           alert(data.error[0].msg)

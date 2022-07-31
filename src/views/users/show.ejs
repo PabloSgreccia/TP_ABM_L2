@@ -11,6 +11,7 @@
         <div class="form-buttons">
           <a href="/users/edit/<%= targetUser.id %>" class="btn-primary">Edit</a>
           <button name="boton" id="boton" class="btn-primary btn-delete">Delete</button>
+          <a href="/users/list" class="btn-primary btn-cancel">Back</a>
         </div>
       </form>
     </div>
@@ -27,7 +28,7 @@
 
         const data = await destroy(id);
         if (data.status = 200) {
-          alert(`${data.msg}: ${data.deletedUser.name}`)
+          // alert(`${data.msg}: ${data.deletedUser.name}`)
           window.location.href = '/users/list';
         } else {
           alert(data.error[0].msg)

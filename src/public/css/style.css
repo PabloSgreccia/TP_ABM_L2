@@ -363,14 +363,30 @@ tbody .no-data{
     border-color: #ac1414;
 }
 
-.input-hidden{
-    visibility: hidden;
+/* .input-hidden{
     display: none;
+} */
+
+.floating-message{
+    color: black;
+    background-color: #64c47c;
+    border: 1px solid #1a9138;
+    width: 200px;
+    padding: 1rem;
+    border-radius: 10px;
+    z-index: 999;
+    position: fixed;
+    top: calc(4.5rem + 16px);
+    right: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
-
-
-
-
-
+.floating-message:hover{
+    opacity: 70%;
+    transition: 0.3s;
+    cursor: pointer;
+}
 
