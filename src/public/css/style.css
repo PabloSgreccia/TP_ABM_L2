@@ -230,7 +230,7 @@ tbody tr:hover{
     transition: 0.3s;
 }
 
-td {
+td, .messageText {
     text-transform: capitalize;
 }
 
@@ -370,8 +370,8 @@ tbody .no-data{
 .floating-message{
     color: black;
     background-color: #64c47c;
-    border: 1px solid #1a9138;
-    width: 200px;
+    /* border: 1px solid #1a9138; */
+    width: 220px;
     padding: 1rem;
     border-radius: 10px;
     z-index: 999;
@@ -382,11 +382,27 @@ tbody .no-data{
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    opacity: 75%;
 }
 
 .floating-message:hover{
-    opacity: 70%;
+    opacity: 100%;
     transition: 0.3s;
     cursor: pointer;
 }
 
+/*################# Validators #################*/
+
+.imhidden{
+    visibility: hidden;
+}
+
+.invalid {
+    color: white;
+    background-color: #ce6969;
+    display: block;
+    visibility: visible;
+    padding: 0.5rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

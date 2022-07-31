@@ -5,7 +5,8 @@
       <form method="POST" action="/api/store" novalidate>
         <div class="form-input">
           <input type="text" name="name" id="name" placeholder="Name" 
-            maxlength="20" onkeydown="return /[a-z]/i.test(event.key)" required>
+          maxlength="20" pattern="^[a-zA-Z ]{3,20}$" required>
+          <span id="input-alert" class="imhidden">Only letters and white spaces are allowed, Between 3 and 20 characters</span>
         </div>
         <div class="form-buttons">
           <a href="/users/list" class="btn-primary btn-cancel">Cancel</a>
@@ -15,40 +16,8 @@
     </div>
 
     <!-- ================================================== -->
-    <script>
-      const $boton = document.getElementById('boton');
+    <script src="/js/inputValidations.js"></script>
+    <script src="/js/users/createUser.js"></script>
 
-      boton.addEventListener('click', async (e) => {
-        e.preventDefault();
-
-        let name = document.getElementById('name').value;
-
-        const data = await store(name);
-        if (data.status === 200) {
-          // alert(`${data.msg}: ${data.name}`)
-          window.location.href = '/users/list';
-        } else {
-          alert(data.error[0].msg)
-        }
-      })
-
-      const store = async (name) => {
-        try {
-          const request = await fetch('http://localhost:3000/users/store',{
-            method:"POST",
-            body: JSON.stringify({
-              "name": name,
-            }),
-            headers : {
-              "Content-Type": "application/json",
-            }
-          })
-          const datos = await request.json()
-          return datos;
-        } catch (error) {
-          return error;
-        }
-      }
-    </script>
   </body>
 </html>

@@ -6,7 +6,6 @@ const usersList = async (req,res) => {
     let message = {'message': ''}
     if (messages.length) {
         message = messages.shift();
-        console.log(message);
     } 
     return res.render('../src/views/users/list', {users, message});
 };
@@ -41,7 +40,7 @@ const storeUser = async (req,res) => {
         }
 
         users.push({'id': nextId, 'name':name.toLowerCase()});
-        messages.push({'message':`User ${name.toLowerCase()} created`});
+        messages.push({'message':`User "${name.toLowerCase()}" created`});
         return res.status(200).json({
             'status': 200,
             'id': nextId, 
@@ -56,8 +55,7 @@ const storeUser = async (req,res) => {
 const updateUser = async (req,res) => {
     const {name} = req.body;
     const id = req.params.id;
-    if (id && name) {
-        console.log(name);
+    if (id && (name != '')) {
         let updatedUser = '';
         for (let i = 0; i < users.length; i++) {
             if (users[i].id == id) {
@@ -66,7 +64,7 @@ const updateUser = async (req,res) => {
                 break
             }
         }
-        messages.push({'message':`User ${updatedUser} changed to ${name.toLowerCase()}`});
+        messages.push({'message':`User "${updatedUser}" changed to "${name.toLowerCase()}"`});
         return res.status(201).json({'status': 201, 'oldName': updatedUser, 'newName': name,  'msg':'User edited correctly'})
     } else {
         return res.status(404).json({'msg':'Data not received.'})
@@ -77,7 +75,7 @@ const destroyUser = async (req,res) => {
     const id = req.params.id;
     const deletedUser = users.find(user => user.id == id)
     users = users.filter(user => user.id != id);
-    messages.push({'message':`User ${deletedUser.name} deleted`});
+    messages.push({'message':`User "${deletedUser.name}" deleted`});
     return res.status(200).json({'status': 200, deletedUser, 'msg':'User deleted correctly'})
 };
 

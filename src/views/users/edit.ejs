@@ -6,7 +6,8 @@
         <div class="form-input">
           <label for="name">Name</label>
           <input type="text" name="name" id="name" value="<%= targetUser.name %>" 
-            maxlength="20" onkeydown="return /[a-z]/i.test(event.key)" required>
+          maxlength="20" pattern="^[a-zA-Z ]{3,20}$" required>
+          <span id="input-alert" class="imhidden">Only letters and white spaces are allowed, Between 3 and 20 characters</span>
           <input clss="input-hidden" name="id" id="id" value="<%= targetUser.id %>" hidden>
         </div>
         <div class="form-buttons">
@@ -18,42 +19,9 @@
 
 
     <!-- ================================================== -->
-    <script>
-      const $boton = document.getElementById('boton');
+    
+    <script src="/js/inputValidations.js"></script>
+    <script src="/js/users/editUser.js"></script>
 
-      $boton.addEventListener('click', async (e) => {
-        e.preventDefault();
-
-        let name = document.getElementById('name').value;
-        let id = document.getElementById('id').value;
-
-        const data = await update(id, name);
-        console.log(data);
-        if (data.status = 201) {
-          // alert(`${data.msg}: ${data.oldName} to ${data.newName}`)
-          window.location.href = '/users/list';
-        } else {
-          alert(data.error[0].msg)
-        }
-      })
-
-      const update = async (id, name) => {
-        try {
-          const request = await fetch('http://localhost:3000/users/' + id,{
-            method:"PATCH",
-            body: JSON.stringify({
-              "name": name,
-            }),
-            headers : {
-              "Content-Type": "application/json",
-            }
-          })
-          const datos = await request.json()
-          return datos;
-        } catch (error) {
-          return error;
-        }
-      }
-    </script>
   </body>
 </html>

@@ -6,8 +6,9 @@
         <div class="form-input">
           <label for="fruitType">Fruit</label>
           <input type="text" name="fruitType" id="fruitType" value="<%= targetFruit.type %>" 
-          maxlength="20" onkeydown="return /[a-z]/i.test(event.key)" required>
-          <input clss="input-hidden" name="id" id="id" value="<%= targetFruit.id %>" hidden>
+          maxlength="20" pattern="^[a-zA-Z]{3,20}$" required>
+          <span id="input-alert" class="imhidden">Only letters are allowed, Between 3 and 20 characters</span>
+          <input name="id" id="id" value="<%= targetFruit.id %>" hidden>
         </div>
         <div class="form-buttons">
           <a href="/fruits/list" class="btn-primary btn-cancel">Cancel</a>
@@ -15,42 +16,11 @@
         </div>
       </form>
     </div>
+    
     <!-- ==================================================  -->
-    <script>
-      const $boton = document.getElementById('boton');
+    <script src="/js/inputValidations.js"></script>
+    <script src="/js/fruits/editFruit.js"></script>
 
-      boton.addEventListener('click', async (e) => {
-        e.preventDefault();
 
-        let fruitType = document.getElementById('fruitType').value;
-        let id = document.getElementById('id').value;
-
-        const data = await update(id, fruitType);
-        if (data.status = 201) {
-          // alert(`${data.msg}: ${data.oldType} to ${data.newType}`)
-          window.location.href = '/fruits/list';
-        } else {
-          alert(data.error[0].msg)
-        }
-      })
-
-      const update = async (id, fruitType) => {
-        try {
-          const request = await fetch('http://localhost:3000/fruits/' + id,{
-            method:"PATCH",
-            body: JSON.stringify({
-              'type': fruitType,
-            }),
-            headers : {
-              "Content-Type": "application/json",
-            }
-          })
-          const datos = await request.json()
-          return datos;
-        } catch (error) {
-          return error;
-        }
-      }
-    </script>
   </body>
 </html>
