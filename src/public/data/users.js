@@ -5,7 +5,7 @@ let users = [
     },
     {
         'id': 1,
-        'name':'Lucy'
+        'name':'Rose'
     },
     {
         'id': 2,

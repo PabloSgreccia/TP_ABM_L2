@@ -230,6 +230,10 @@ tbody tr:hover{
     transition: 0.3s;
 }
 
+td {
+    text-transform: capitalize;
+}
+
 .floating-button{
     color: white;
     background-color: #2c3e50;
@@ -296,12 +300,18 @@ tbody .no-data{
 
 .form-input input{
     padding: 8px;
-    display: block;
+    /* display: block; */
     border: none;
     border-bottom: 1px solid #ccc;
     width: 100%;
     font: inherit;
     margin: 0;
+}
+
+.form-input label{
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .form-buttons{
@@ -344,6 +354,19 @@ tbody .no-data{
     opacity: 70%;
 }
 
+.btn-delete{
+    background-color: #cf1a1a;
+    border-color: #ac1414;
+}
+.btn-delete:hover{
+    background-color: #ac1414;
+    border-color: #ac1414;
+}
+
+.input-hidden{
+    visibility: hidden;
+    display: none;
+}
 
 
 
