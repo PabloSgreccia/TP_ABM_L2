@@ -7,9 +7,10 @@
           <label for="name">Name</label>
           <input type="text" name="name" id="name" value="<%= targetUser.name %>" 
           maxlength="20" pattern="^[a-zA-Z ]{3,20}$" required>
-          <span id="input-alert" class="imhidden">Only letters and white spaces are allowed, Between 3 and 20 characters.</span>
+          <span id="input-alert" class="hidden">Only letters and white spaces are allowed, Between 3 and 20 characters.</span>
           <input clss="input-hidden" name="id" id="id" value="<%= targetUser.id %>" hidden>
         </div>
+        <br>
         <div class="form-buttons">
           <a href="/users/list" class="common-btn btn-cancel">Cancel</a>
           <button type="submit" id="boton" class="common-btn">Save</button>
@@ -19,7 +20,6 @@
 
 
     <!-- ================================================== -->
-    
     <script src="/js/inputValidations.js"></script>
     <script src="/js/users/editUser.js"></script>
 

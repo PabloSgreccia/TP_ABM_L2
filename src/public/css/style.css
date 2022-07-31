@@ -308,7 +308,6 @@ tbody .no-data{
     border-bottom: 1px solid #ccc;
     width: 100%;
     font: inherit;
-    margin-bottom: 1rem;
 }
 
 .form-input label{
@@ -339,8 +338,8 @@ tbody .no-data{
 
 /*################# Validators #################*/
 
-.imhidden{
-    visibility: hidden;
+.hidden{
+    display: none;
 }
 
 .invalid {
