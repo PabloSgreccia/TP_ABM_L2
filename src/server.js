@@ -9,7 +9,6 @@ const app = express();
 const router = require('./routes/index.routes');
 const routerUsers = require('./routes/users.routes');
 const routerFruits = require('./routes/fruits.routes');
-// const routerApi = require('./routes/api.routes');
 
 // Static files
 app.use(express.static(__dirname + '/public'))
@@ -28,12 +27,11 @@ app.use(json());
 app.use('/', router);
 app.use('/users', routerUsers);
 app.use('/fruits', routerFruits);
-// app.use('/api', routerApi);
 
 app.use((req, res, next) => {
   res.status(404).json({
     status: '404',
-    descripcion: 'Pagina no encontrada'
+    descripcion: 'Page not found'
   })
 })
   

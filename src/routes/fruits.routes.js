@@ -4,6 +4,7 @@ const router = Router();
 const {fruitsList, createFruit, editFruit, storeFruit, updateFruit, destroyFruit, showFruit} 
     = require('../controllers/fruits.controller.js');
 
+// Routes
 router.get("/list", fruitsList);
 router.get("/create", createFruit);
 router.get("/edit/:id", editFruit);
